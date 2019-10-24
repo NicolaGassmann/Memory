@@ -1,13 +1,26 @@
 package com.example.memory;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.FileProvider;
+
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.Image;
+import android.net.Uri;
+import android.os.Bundle;
+import android.provider.MediaStore;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 
 import com.google.zxing.client.android.Intents;
 import com.google.zxing.integration.android.IntentIntegrator;
+
+import com.journeyapps.barcodescanner.CaptureActivity;
+
+import java.io.File;
+import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -36,11 +49,16 @@ public class MainActivity extends AppCompatActivity {
             String path = extras.getString(
                     Intents.Scan.RESULT_BARCODE_IMAGE_PATH);
 
-            // Ein Bitmap zur Darstellung erhalten wir so:
-            // Bitmap bmp = BitmapFactory.decodeFile(path)
+
+            Bitmap bmp = BitmapFactory.decodeFile(path);
+            ImageView picture = findViewById(R.id.imageView1);
+            picture.setImageBitmap(bmp);
 
             String code = extras.getString(
                     Intents.Scan.RESULT);
+
+            Button butt = findViewById(R.id.button1);
+            butt.setText(code);
         }
     }
 
