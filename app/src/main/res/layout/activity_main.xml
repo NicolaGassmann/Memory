@@ -12,7 +12,7 @@
         android:layout_height="185dp"
         android:layout_marginStart="28dp"
         android:layout_marginBottom="232dp"
-        android:onClick="openCam"
+        android:onClick="takeQrCodePicture"
         android:text="Picture 1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
