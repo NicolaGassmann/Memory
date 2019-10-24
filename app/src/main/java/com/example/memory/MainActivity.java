@@ -4,6 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -46,11 +49,16 @@ public class MainActivity extends AppCompatActivity {
             String path = extras.getString(
                     Intents.Scan.RESULT_BARCODE_IMAGE_PATH);
 
-            // Ein Bitmap zur Darstellung erhalten wir so:
-            // Bitmap bmp = BitmapFactory.decodeFile(path)
+
+            Bitmap bmp = BitmapFactory.decodeFile(path);
+            ImageView picture = findViewById(R.id.imageView1);
+            picture.setImageBitmap(bmp);
 
             String code = extras.getString(
                     Intents.Scan.RESULT);
+
+            Button butt = findViewById(R.id.button1);
+            butt.setText(code);
         }
     }
 
