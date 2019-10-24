@@ -1,15 +1,23 @@
 package com.example.memory;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.FileProvider;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 
 import com.google.zxing.client.android.Intents;
 import com.google.zxing.integration.android.IntentIntegrator;
 
 import com.journeyapps.barcodescanner.CaptureActivity;
+
+import java.io.File;
+import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Button button1 = findViewById(R.id.button1);
+        ImageView imageView1 = findViewById(R.id.imageView1);
         setContentView(R.layout.activity_main);
     }
 
@@ -29,9 +39,13 @@ public class MainActivity extends AppCompatActivity {
         integrator.initiateScan();
     }
 
-    public void openCam(View view){
-        Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
-        startActivity(intent);
+    static final int REQUEST_IMAGE_CAPTURE = 1;
+
+    public void openCam(View view) {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+        }
     }
 
     @Override
