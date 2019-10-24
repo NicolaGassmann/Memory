@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     public void takeQrCodePicture() {
         IntentIntegrator integrator = new IntentIntegrator(this);
         integrator.setCaptureActivity(MyCaptureActivity.class);
-        integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE_TYPE);
+        integrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES);
         integrator.setOrientationLocked(false);
         integrator.addExtra(Intents.Scan.BARCODE_IMAGE_ENABLED, true);
         integrator.initiateScan();
