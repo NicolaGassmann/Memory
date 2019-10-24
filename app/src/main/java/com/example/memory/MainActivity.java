@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import com.google.zxing.client.android.Intents;
 import com.google.zxing.integration.android.IntentIntegrator;
@@ -18,13 +19,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
-    public void takeQrCodePicture() {
+
+    public void takeQrCodePicture(View view) {
         IntentIntegrator integrator = new IntentIntegrator(this);
         integrator.setCaptureActivity(MyCaptureActivity.class);
         integrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES);
         integrator.setOrientationLocked(false);
         integrator.addExtra(Intents.Scan.BARCODE_IMAGE_ENABLED, true);
         integrator.initiateScan();
+    }
+
+    public void openCam(View view){
+        Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
+        startActivity(intent);
     }
 
     @Override
