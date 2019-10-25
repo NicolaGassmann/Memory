@@ -2,6 +2,8 @@ package com.example.memory;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -59,6 +61,10 @@ public class MainActivity extends AppCompatActivity {
 
             Button butt = findViewById(R.id.button1);
             butt.setText(code);
+
+            RecyclerView rv = findViewById(R.id.recyclerView);
+            GridLayoutManager gridLayoutManager = new GridLayoutManager(this /* the activity */, 2);
+            rv.setLayoutManager(gridLayoutManager);
         }
     }
 
