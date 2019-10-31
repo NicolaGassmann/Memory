@@ -15,6 +15,7 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.zxing.client.android.Intents;
 import com.google.zxing.integration.android.IntentIntegrator;
@@ -25,7 +26,6 @@ import java.io.File;
 import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,23 +48,21 @@ public class MainActivity extends AppCompatActivity {
                 && resultCode == RESULT_OK) {
 
             Bundle extras = data.getExtras();
+            assert extras != null;
             String path = extras.getString(
                     Intents.Scan.RESULT_BARCODE_IMAGE_PATH);
 
 
             Bitmap bmp = BitmapFactory.decodeFile(path);
-            ImageView picture = findViewById(R.id.imageView1);
+            ImageView picture = findViewById(R.id.imageView2);
             picture.setImageBitmap(bmp);
 
             String code = extras.getString(
                     Intents.Scan.RESULT);
 
-            Button butt = findViewById(R.id.button1);
-            butt.setText(code);
+            TextView textView = findViewById(R.id.textView);
+            textView.setText(code);
 
-            RecyclerView rv = findViewById(R.id.recyclerView);
-            GridLayoutManager gridLayoutManager = new GridLayoutManager(this /* the activity */, 2);
-            rv.setLayoutManager(gridLayoutManager);
         }
     }
 
